@@ -27,16 +27,6 @@ export type Project = {
 
 export const projects: Project[] = [
   {
-    id: 'emergency-tracking',
-    name: 'Location tracking for emergency service vehicles',
-    context: 'Capstone · Ateneo de Davao University',
-    year: '2025',
-    detail:
-      'A dispatcher can only make good decisions if they know where the responding vehicle actually is. I built the web interface and the live map layer, so vehicle position, route, and status read at a glance instead of arriving as a list of coordinates.',
-    stack: ['React', 'React Leaflet', 'JavaScript'],
-    featured: true,
-  },
-  {
     id: 'erp-suite',
     name: 'ERP systems',
     context: 'Davao City Water District',
@@ -53,6 +43,16 @@ export const projects: Project[] = [
     detail:
       'Pages and components for the module handling employee records and HR workflows, built on Ant Design with MobX for local state. My first time working inside an established enterprise codebase rather than starting one.',
     stack: ['React', 'TypeScript', 'Ant Design', 'MobX', 'React Query'],
+  },
+  {
+    id: 'emergency-tracking',
+    name: 'Location tracking for emergency service vehicles',
+    context: 'Capstone · Ateneo de Davao University',
+    year: '2025',
+    detail:
+      'A dispatcher can only make good decisions if they know where the responding vehicle actually is. I built the web interface and the live map layer, so vehicle position, route, and status read at a glance instead of arriving as a list of coordinates.',
+    stack: ['React', 'React Leaflet', 'JavaScript'],
+    featured: true,
   },
   {
     id: 'fylp-2024',
