@@ -22,14 +22,18 @@ export const profile = {
   emailNote: 'Yes, that is my actual email.',
   github: 'https://github.com/Ivureku',
   githubHandle: 'Ivureku',
+  /** Header badge beside GitHub. */
+  linkedin: 'https://www.linkedin.com/in/kervi-asombrado-5ab64b361/',
 
   /**
    * The contact CTA downloads this. Drop the PDF into public/ under this
    * exact name; `fileName` is what it saves as on the visitor's machine.
+   * No leading slash: Contact.tsx prefixes the deploy base, so the link still
+   * resolves when the site is served from a subpath.
    */
   resume: {
-    href: '/Kervi-Kent-Asombrado-Resume.pdf',
-    fileName: 'Kervi-Kent-Asombrado-Resume.pdf',
+    href: 'Asombrado-Resume.pdf',
+    fileName: 'Asombrado-Resume.pdf',
   },
 
   /**

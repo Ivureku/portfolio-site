@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="Route mark">
+  <!--
+    The route motif from the intro map, reduced to two turns and a terminus.
+    Knocked out of a solid accent tile rather than drawn on transparency —
+    tab bars are grey, white, near-black and sometimes a coloured strip, and a
+    bare mint mark disappears against half of them.
+
+    Colours are the dark-theme tokens from index.css: accent rgb(88 196 162),
+    paper rgb(15 20 19). Fixed, not theme-reactive — an SVG favicon follows the
+    OS scheme rather than the site's own toggle, so a reactive one would
+    contradict the page for anyone who overrides it.
+  -->
+  <rect width="32" height="32" rx="7" fill="#58C4A2" />
+  <path
+    d="M8 24 L8 17 L16 17 L16 10 L24 10"
+    fill="none"
+    stroke="#0F1413"
+    stroke-width="3.2"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+  <circle cx="24" cy="10" r="3.6" fill="#0F1413" />
+</svg>

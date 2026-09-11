@@ -17,6 +17,62 @@
       name="description"
       content="Front-end developer in Davao City. I build the screens for ERP, HR, and dispatch systems that people use at work."
     />
+
+    <!-- The route mark: the intro map's polyline reduced to two turns and a
+         terminus. SVG for browsers that take it, .ico (16/32/48) for Safari
+         and older ones, and a flat 180px PNG for the iOS home screen — iOS
+         applies its own rounded mask, so that one must not be pre-rounded. -->
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+    <!-- Follows the OS scheme, not the in-page toggle — there is no way to
+         drive this from JS, so it tracks the default each visitor starts in. -->
+    <meta
+      name="theme-color"
+      content="#0f1413"
+      media="(prefers-color-scheme: dark)"
+    />
+    <meta
+      name="theme-color"
+      content="#e9ebe7"
+      media="(prefers-color-scheme: light)"
+    />
+
+    <!-- How the link unfurls in Slack, LinkedIn, iMessage and the rest.
+         Scrapers need absolute URLs, so plugins/siteUrl.ts fills in the host
+         at build time. With no URL to use, it removes the tags that need one
+         rather than ship them pointing at the wrong site. -->
+    <link rel="canonical" href="__SITE_URL__/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Kervi Kent Asombrado" />
+    <meta property="og:url" content="__SITE_URL__/" />
+    <meta
+      property="og:title"
+      content="Kervi Kent Asombrado — Front-End Developer"
+    />
+    <meta
+      property="og:description"
+      content="Front-end developer in Davao City. I build the screens for ERP, HR, and dispatch systems that people use at work."
+    />
+    <meta property="og:image" content="__SITE_URL__/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta
+      property="og:image:alt"
+      content="Kervi Kent Asombrado, Front-End Developer, Davao City, Philippines."
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="Kervi Kent Asombrado — Front-End Developer"
+    />
+    <meta
+      name="twitter:description"
+      content="Front-end developer in Davao City. I build the screens for ERP, HR, and dispatch systems that people use at work."
+    />
+    <meta name="twitter:image" content="__SITE_URL__/og-image.png" />
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link

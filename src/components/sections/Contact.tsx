@@ -31,7 +31,7 @@ const Contact = () => (
       <h2 className="font-data text-xs text-ink-muted">Contact</h2>
 
       <a
-        href={profile.resume.href}
+        href={`${import.meta.env.BASE_URL}${profile.resume.href}`}
         download={profile.resume.fileName}
         className="cta group mt-6 block w-full sm:mt-10"
       >

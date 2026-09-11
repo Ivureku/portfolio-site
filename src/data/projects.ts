@@ -8,6 +8,19 @@ export type Project = {
   detail: string;
   stack: string[];
   link?: { label: string; href: string };
+  /**
+   * For work whose live site has gone. The screenshots stand in for the link
+   * that would otherwise sit here, and `note` says why there isn't one.
+   */
+  archive?: {
+    /** Shown above the screenshots. One sentence on where the site went. */
+    note: string;
+    /**
+     * `src` is a path inside public/ with no leading slash. ArchiveViewer
+     * prefixes the deploy base, so it still resolves under a subpath.
+     */
+    shots: { src: string; alt: string; caption: string }[];
+  };
   /** One project starts open. Make it the one you most want read. */
   featured?: boolean;
 };
@@ -49,7 +62,26 @@ export const projects: Project[] = [
     detail:
       'The public site for the First Year Leadership Program: registration, an application status checker, FAQs, and organisation pages. Built on a component library documented in Storybook so the rest of the team could reuse it.',
     stack: ['Next.js', 'React', 'Tailwind CSS', 'Storybook'],
-    link: { label: 'fylp2024.com', href: 'https://www.fylp2024.com/' },
+    archive: {
+      note: 'The domain lapsed after the programme ran, so fylp2024.com no longer resolves to the site. Archived here instead.',
+      shots: [
+        {
+          src: 'archive/fylp/home.png',
+          alt: 'The FYLP 2024 landing page: the programme wordmark in primary colours beside a collage of geometric shapes, above a register call to action.',
+          caption: 'Landing page',
+        },
+        {
+          src: 'archive/fylp/register.png',
+          alt: 'The application page, explaining the delegate and mentor routes with an eligibility list under each.',
+          caption: 'Application routes',
+        },
+        {
+          src: 'archive/fylp/home-mobile.png',
+          alt: 'The same landing page at phone width, the navigation collapsed behind a menu button.',
+          caption: 'Landing page at phone width',
+        },
+      ],
+    },
   },
   {
     id: 'palaro-2024',

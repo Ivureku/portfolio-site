@@ -94,6 +94,19 @@
     animation: detail-swap 360ms cubic-bezier(0.22, 0.61, 0.36, 1) both;
   }
 
+  /* Screenshot archive, for projects whose live site has gone. Portalled over
+     the page, so it fades in on its own rather than inheriting the reveal.
+     Opaque, not tinted — at any transparency the work section reads straight
+     through the screenshot and looks like a rendering fault. */
+  .archive-overlay {
+    animation: archive-in 260ms cubic-bezier(0.22, 0.61, 0.36, 1) both;
+  }
+
+  /* Keyed by src in ArchiveViewer, so this replays on every swap. */
+  .archive-shot {
+    animation: archive-shot-in 320ms cubic-bezier(0.22, 0.61, 0.36, 1) both;
+  }
+
   /* Email tooltip. Hover or keyboard focus shows it; touch screens can't
      hover, so there it sits under the address as a plain caption. */
   .tooltip-host {
@@ -258,6 +271,19 @@
 }
 
 @keyframes detail-swap {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 0.5rem, 0);
+  }
+}
+
+@keyframes archive-in {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes archive-shot-in {
   from {
     opacity: 0;
     transform: translate3d(0, 0.5rem, 0);

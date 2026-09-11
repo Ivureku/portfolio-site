@@ -4,6 +4,7 @@ import SectionHeading from '@/components/ui/SectionHeading';
 import Reveal from '@/components/ui/Reveal';
 import RichText from '@/components/ui/RichText';
 import StackList from '@/components/ui/StackList';
+import ArchiveViewer from '@/components/ui/ArchiveViewer';
 import { projects, type Project } from '@/data/projects';
 import { useUiStore } from '@/store/useUiStore';
 
@@ -19,8 +20,18 @@ const HOVER_INTENT_MS = 140;
 
 const isDesktop = () => window.matchMedia(DESKTOP_QUERY).matches;
 
-const ProjectLink = ({ project }: { project: Project }) =>
-  project.link ? (
+/**
+ * What closes a project panel: an archive where the site has gone, a link
+ * where it's still up, nothing where there was never anything to visit.
+ */
+const ProjectTail = ({ project }: { project: Project }) => {
+  if (project.archive) {
+    return (
+      <ArchiveViewer archive={project.archive} projectName={project.name} />
+    );
+  }
+
+  return project.link ? (
     <a
       href={project.link.href}
       target="_blank"
@@ -30,6 +41,7 @@ const ProjectLink = ({ project }: { project: Project }) =>
       {project.link.label}
     </a>
   ) : null;
+};
 
 /**
  * Projects as an index rather than a grid of cards. Rows stay dense and
@@ -147,7 +159,17 @@ const Work = () => {
                   </h3>
                 </Reveal>
 
-                <div className="disclosure lg:hidden" data-open={isOpen}>
+                {/* Inert while shut: grid-rows 0fr hides the content but
+                    leaves it in the tab order, so a keyboard visitor could
+                    land on links inside a row that looks closed. React 18 has
+                    no inert prop, so it's set on the node directly. */}
+                <div
+                  ref={(node) => {
+                    if (node) node.inert = !isOpen;
+                  }}
+                  className="disclosure lg:hidden"
+                  data-open={isOpen}
+                >
                   <div>
                     <div
                       id={panelId}
@@ -166,7 +188,7 @@ const Work = () => {
                           />
                         </div>
 
-                        <ProjectLink project={project} />
+                        <ProjectTail project={project} />
                       </div>
                     </div>
                   </div>
@@ -203,7 +225,7 @@ const Work = () => {
                   />
                 </div>
 
-                <ProjectLink project={activeProject} />
+                <ProjectTail project={activeProject} />
               </div>
             </div>
           </Reveal>

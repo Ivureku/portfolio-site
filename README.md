@@ -17,9 +17,9 @@ files import React, so you can edit them without touching a component.
 
 | I want to change…                     | Edit                        |
 | ------------------------------------- | --------------------------- |
-| Name, intro paragraph, email, GitHub  | `src/data/profile.ts`       |
+| Name, intro paragraph, email, GitHub, LinkedIn | `src/data/profile.ts`       |
 | The email tooltip joke                | `emailNote` in `src/data/profile.ts` |
-| The résumé the contact CTA downloads  | `public/Kervi-Kent-Asombrado-Resume.pdf` (path set in `profile.ts`) |
+| The résumé the contact CTA downloads  | `public/Asombrado-Resume.pdf` (path set in `profile.ts`) |
 | The CTA wording                       | `CTA_REST` / `CTA_HOVER` in `src/components/sections/Contact.tsx` |
 | A job, its bullets, or its tech stack | `src/data/experience.ts`    |
 | A project, its blurb, or its link     | `src/data/projects.ts`      |
@@ -49,7 +49,7 @@ src/
 ├── hooks/         Scroll, viewport, and theme sync. Each one does a single job.
 ├── components/
 │   ├── layout/    StatusBar, Section wrapper, SiteFooter
-│   ├── ui/        Reveal, SectionHeading, StackList, RichText, GitHubBadge, ThemeToggle
+│   ├── ui/        Reveal, SectionHeading, StackList, RichText, GitHubBadge, LinkedInBadge, ThemeToggle, ArchiveViewer
 │   ├── sections/  One file per section of the page
 │   └── visual/    RouteMap — the animated map behind the intro
 ├── App.tsx        Section order + the four page-level hooks
@@ -124,15 +124,26 @@ timer in a ref, which never renders.)
 
 ## Before you deploy
 
-- [ ] **Add your résumé as `public/Kervi-Kent-Asombrado-Resume.pdf`.** The
-      contact CTA links to it; until the file exists, the download is broken.
-      To use a different filename, change `resume` in
+- [x] **Add your résumé as `public/Asombrado-Resume.pdf`.** The contact CTA
+      links to it. To use a different filename, change `resume` in
       `src/data/profile.ts`.
 - [ ] Decide whether to add your phone number. It's deliberately left off — a
       public page invites scrapers — but it's a one-line addition to
       `profile.ts` and `Contact.tsx` if you want it.
-- [ ] Add a `favicon.ico` and an Open Graph image to `public/`, then link them
-      in `index.html`.
+- [x] Add a favicon and an Open Graph image to `public/`, then link them in
+      `index.html`.
+- [ ] **Tell the build your site's URL**, unless you deploy to Vercel or
+      Netlify. Link previews and the canonical tag need an absolute URL.
 
-`npm run build` outputs a static `dist/` that deploys to Vercel, Netlify, or
-GitHub Pages as-is.
+`npm run build` outputs a static `dist/`.
+
+- **Vercel or Netlify:** deploys as-is. The site URL is read from the host's
+  own build variables when the site builds, so after adding a custom domain,
+  redeploy once to pick it up.
+- **Anywhere else:** set `VITE_SITE_URL=https://your-domain.com` in the build
+  environment. Without it the build still succeeds, but it leaves out the
+  canonical and link-preview tags and prints a warning saying so.
+- **GitHub Pages project site** (served from `/portfolio-site/`): build with
+  `npm run build:pages` instead. Every asset path already respects the base,
+  so nothing else needs changing. Don't pass `--base` by hand from Git Bash —
+  it rewrites `/portfolio-site/` into a Windows path before Vite sees it.
