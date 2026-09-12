@@ -215,23 +215,21 @@
     animation-delay: calc(var(--i) * 45ms + 200ms);
   }
 
-  /* Touch screens can't hover, so the two phrases take turns on their own.
-     The whole line moves here, leaving the characters free for the rise. */
+  /* Touch screens can't hover, so there is nothing to trigger the swap. The
+     two phrases used to take turns on a timer here, but the longer one is
+     wider than the clip box at phone widths and cycled in cropped. The
+     resting phrase stands alone; the caption under it says what the link
+     does. */
   @media (hover: none) {
-    .cta-line--hover .cta-char {
-      transform: none;
-    }
-
     .cta-line--hover {
-      transform: translate3d(0, 115%, 0);
+      display: none;
     }
 
-    [data-visible='true'] .cta-line--rest {
-      animation: cta-cycle-out 7s ease-in-out 2.4s infinite;
-    }
-
-    [data-visible='true'] .cta-line--hover {
-      animation: cta-cycle-in 7s ease-in-out 2.4s infinite;
+    /* A tap can leave :hover stuck on touch browsers. With no second phrase
+       to replace it, the resting one has to stay put or the CTA reads blank. */
+    .cta:hover .cta-line--rest .cta-char,
+    .cta:focus-visible .cta-line--rest .cta-char {
+      transform: none;
     }
   }
 }
@@ -293,30 +291,6 @@
 @keyframes cta-rise {
   from {
     transform: translate3d(0, 115%, 0);
-  }
-}
-
-@keyframes cta-cycle-out {
-  0%,
-  42%,
-  100% {
-    transform: none;
-  }
-  50%,
-  92% {
-    transform: translate3d(0, -115%, 0);
-  }
-}
-
-@keyframes cta-cycle-in {
-  0%,
-  42%,
-  100% {
-    transform: translate3d(0, 115%, 0);
-  }
-  50%,
-  92% {
-    transform: none;
   }
 }
 

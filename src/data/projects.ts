@@ -34,6 +34,7 @@ export const projects: Project[] = [
     detail:
       'Several internal systems that staff spend their whole working day inside. My job is the front end: shared component patterns, server state through React Query, client state through Zustand, and forms that hold up against real operational data.',
     stack: ['React', 'TypeScript', 'React Query', 'Zustand', '.NET'],
+    featured: true,
   },
   {
     id: 'hr-erp',
@@ -52,7 +53,6 @@ export const projects: Project[] = [
     detail:
       'A dispatcher can only make good decisions if they know where the responding vehicle actually is. I built the web interface and the live map layer, so vehicle position, route, and status read at a glance instead of arriving as a list of coordinates.',
     stack: ['React', 'React Leaflet', 'JavaScript'],
-    featured: true,
   },
   {
     id: 'fylp-2024',
