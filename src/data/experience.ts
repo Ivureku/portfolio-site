@@ -11,6 +11,8 @@ export type Role = {
   highlights: string[];
   stack: string[];
   isCurrent?: boolean;
+  /** Small tag beside the title, e.g. "project-based". */
+  employmentType?: string;
 };
 
 /** Oldest first — the section reads as a progression from top to bottom. */
@@ -77,19 +79,49 @@ export const roles: Role[] = [
       'Axios',
     ],
   },
+  // DCWD, current version — uncomment this and comment out the project-based
+  // one below to show the role as ongoing. Also swap the matching lines in
+  // data/profile.ts and data/projects.ts.
+  // {
+  //   id: 'dcwd-now',
+  //   year: 'Now',
+  //   org: 'Davao City Water District',
+  //   title: 'Senior Computer Services Programmer',
+  //   period: 'October 2025 – present',
+  //   location: 'Gen. Douglas MacArthur Highway, Davao City',
+  //   summary:
+  //     'Came back hired six months later to lead the front end across several ERP projects for a utility serving the whole city.',
+  //   highlights: [
+  //     'Own front-end development for multiple **ERP systems**, from architecture decisions down to component APIs.',
+  //     'Assist BE in writing simple API endpoints in .NET and document them in Swagger.',
+  //     'Use **Claude Code** as part of my daily workflow with prompt engineering guidelines, and reviewing everything it writes before it ships.',
+  //   ],
+  //   stack: [
+  //     'React',
+  //     'TypeScript',
+  //     'React Query',
+  //     'Zustand',
+  //     'Axios',
+  //     '.NET',
+  //     'Swagger',
+  //   ],
+  //   isCurrent: true,
+  // },
+
+  // DCWD, project-based version — the engagement has ended.
   {
-    id: 'dcwd-now',
-    year: 'Now',
+    id: 'dcwd-project',
+    year: '2025—26',
     org: 'Davao City Water District',
     title: 'Senior Computer Services Programmer',
-    period: 'October 2025 – present',
+    period: 'October 2025 – 2026',
     location: 'Gen. Douglas MacArthur Highway, Davao City',
     summary:
-      'Came back hired six months later to lead the front end across several ERP projects for a utility serving the whole city.',
+      'Brought back on a project basis six months after my internship to lead the front end across several ERP projects for a utility serving the whole city.',
     highlights: [
-      'Own front-end development for multiple **ERP systems**, from architecture decisions down to component APIs.',
-      'Assist BE in writing simple API endpoints in .NET and document them in Swagger.',
-      'Use **Claude Code** as part of my daily workflow with prompt engineering guidelines, and reviewing everything it writes before it ships.',
+      'Owned front-end development for multiple **ERP systems**, from architecture decisions down to component APIs.',
+      'Assisted BE in writing simple API endpoints in .NET and documented them in Swagger.',
+      'Used **Claude Code** as part of my daily workflow with prompt engineering guidelines, and reviewed everything it wrote before it shipped.',
     ],
     stack: [
       'React',
@@ -100,6 +132,6 @@ export const roles: Role[] = [
       '.NET',
       'Swagger',
     ],
-    isCurrent: true,
+    employmentType: 'project-based',
   },
 ];

@@ -40,7 +40,7 @@ const Intro = () => (
 
         <dl className="grid gap-4 font-data text-xs sm:grid-cols-2 md:w-72 md:grid-cols-1">
           <div>
-            <dt className="text-ink-muted">Currently</dt>
+            <dt className="text-ink-muted">{profile.roleLabel}</dt>
             <dd className="mt-1 leading-snug">{profile.currentRole}</dd>
           </div>
           <div>

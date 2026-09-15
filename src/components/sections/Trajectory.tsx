@@ -94,13 +94,22 @@ const Trajectory = () => {
                     <h3 className="font-display text-2xl font-semibold tracking-tight sm:text-[1.75rem]">
                       {role.title}
                     </h3>
-                    {role.isCurrent ? (
+                    {/* {role.isCurrent ? (
                       <span className="flex items-center gap-1.5 font-data text-[0.7rem] text-live">
                         <span
                           aria-hidden="true"
                           className="inline-block h-1.5 w-1.5 rounded-full bg-live"
                         />
                         current
+                      </span>
+                    ) : null} */}
+                    {role.employmentType ? (
+                      <span className="flex items-center gap-1.5 font-data text-[0.7rem] text-ink-muted">
+                        <span
+                          aria-hidden="true"
+                          className="inline-block h-1.5 w-1.5 rounded-full border border-ink-muted"
+                        />
+                        {role.employmentType}
                       </span>
                     ) : null}
                   </div>

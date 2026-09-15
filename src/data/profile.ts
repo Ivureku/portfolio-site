@@ -10,7 +10,12 @@ export const profile = {
   /** Header brand on phones. */
   initials: 'KA',
   title: 'Front-End Developer',
-  currentRole: 'Senior Computer Services Programmer, Davao City Water District',
+  /** The label/role pair in the intro. Swap which pair is commented out. */
+  // roleLabel: 'Currently',
+  // currentRole: 'Senior Computer Services Programmer, Davao City Water District',
+  roleLabel: 'Most recently',
+  currentRole:
+    'Senior Computer Services Programmer (project-based), Davao City Water District',
   city: 'Davao City, Philippines',
 
   /** Used for the map readout in the intro. Davao City centre. */
