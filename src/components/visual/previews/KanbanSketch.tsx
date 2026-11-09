@@ -91,7 +91,12 @@ const Header = ({
     {/* No room for the count beside "In progress" on a phone. Collapsed
         rather than display:none, which would stop its animation and restart
         it out of step with the card when a phone turns to landscape. */}
-    <span className="invisible relative inline-block w-0 shrink-0 overflow-hidden font-data text-xs text-ink-muted sm:visible sm:ml-1.5 sm:w-auto sm:overflow-visible">
+    {/* The spacer copy keeps the width but never turns visible: sm:visible
+        would override the hidden wrapper and paint a stale count over the
+        board's own. */}
+    <span
+      className={`${still ? '' : 'sm:visible'} invisible relative inline-block w-0 shrink-0 overflow-hidden font-data text-xs text-ink-muted sm:ml-1.5 sm:w-auto sm:overflow-visible`}
+    >
       {column.counts[0]}
       {still ? null : (
         <span
