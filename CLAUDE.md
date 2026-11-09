@@ -177,10 +177,6 @@ above. Each container is thrown away afterwards, so anything not pushed is lost.
   preinstalled in the container (`require('playwright')` works from any
   directory), so the CDP recipe above is home-only. The rules don't change:
   wait on `document.fonts.ready`, check both themes, look at the screenshots.
-- **`tsconfig.tsbuildinfo` flips between the two machines.** Windows records
-  source paths lowercased (`./src/app.tsx`), Linux keeps their case
-  (`./src/App.tsx`), so a build on either one dirties the file against a
-  commit made on the other. Revert it before committing, until it's untracked.
 - The Git Bash path-rewriting gotcha below is Windows-only.
 
 ## Gotchas that have already bitten once
@@ -195,9 +191,11 @@ above. Each container is thrown away afterwards, so anything not pushed is lost.
   (TS5103) and which breaks the build. `baseUrl` was removed instead: `paths`
   resolves relative to `tsconfig.json` without it since TS 4.4, and Vite
   resolves `@` from its own `resolve.alias` regardless.
-- **`tsconfig.tsbuildinfo` is tracked**, so every build dirties the working
-  tree. It's a build artifact and probably shouldn't be committed, but removing
-  it needs `git rm --cached`, so it's been left alone.
+- **`tsconfig.tsbuildinfo` is ignored — don't commit it again.** It used to be
+  tracked, and every build dirtied the tree. Worse, it differed between
+  machines: Windows records its source paths lowercased (`./src/app.tsx`) and
+  Linux keeps their case (`./src/App.tsx`). A build on one machine always
+  showed a diff against a commit made on the other.
 - **`npx` rewrites `package-lock.json`**, adding `"peer": true` annotations
   with no version changes. Harmless, but revert it so diffs stay honest.
 
