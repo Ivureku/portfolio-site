@@ -202,7 +202,7 @@ what it finds, send him a GIF of the loop, then brief the next project.
 | QA Hub | `kanban`: ticket #12 In progress → Fixed → Done, after his real board | done, checked |
 | ERP systems | `reading`: a meter reading lower than the last one flagged, then fixed | done, checked |
 | HR ERP system | `search`: "014" narrows four employee rows to two | done, checked |
-| Emergency tracking | `dispatch`: Unit 7 follows its route to the pin; Assigned → En route → On scene | done; final re-check of its last fixes may still be open |
+| Emergency tracking | `dispatch`: Unit 7 follows its route to the pin; Assigned → En route → On scene | done, checked |
 | FYLP 2024 | — | next: brief him first |
 | Palaro 2024 | — | not started |
 | Concept paper approval | — | not started |
