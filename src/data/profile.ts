@@ -22,7 +22,7 @@ export const profile = {
   coordinates: { lat: 7.0731, lng: 125.6128 },
 
   /** Yes, it's real. */
-  email: 'insertmailherelol@gmail.com',
+  email: 'kerviasombrado.dev@gmail.com',
   /** Tooltip on the email address in the contact section. */
   emailNote: 'Yes, that is my actual email.',
   github: 'https://github.com/Ivureku',
