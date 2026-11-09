@@ -1,10 +1,12 @@
 import type { ComponentType } from 'react';
 import type { PreviewSketch, Project } from '@/data/projects';
 import KanbanSketch from './KanbanSketch';
+import ReadingSketch from './ReadingSketch';
 
 /** Every sketch a project can name in its `preview`. */
 const SKETCHES: Record<PreviewSketch, ComponentType> = {
   kanban: KanbanSketch,
+  reading: ReadingSketch,
 };
 
 type ProjectPreviewProps = {

@@ -2,7 +2,7 @@
  * The animated sketches a project preview can draw. Each one is a component
  * in src/components/visual/previews/, registered in ProjectPreview.tsx.
  */
-export type PreviewSketch = 'kanban';
+export type PreviewSketch = 'kanban' | 'reading';
 
 export type Project = {
   id: string;
@@ -63,6 +63,11 @@ export const projects: Project[] = [
     detail:
       'Several internal systems that staff spend their whole working day inside. My job is the front end: shared component patterns, server state through React Query, client state through Zustand, and forms that hold up against real operational data.',
     stack: ['React', 'TypeScript', 'React Query', 'Zustand', '.NET'],
+    preview: {
+      sketch: 'reading',
+      caption:
+        'A meter reading lower than the last one, flagged in the field and then corrected.',
+    },
   },
   {
     id: 'hr-erp',

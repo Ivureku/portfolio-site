@@ -187,6 +187,67 @@
     animation-name: kanban-count-done;
   }
 
+  /* ERP systems reading field (ReadingSketch.tsx). One loop: the typo is
+     typed by 20%, flagged at 23%, backspaced to its prefix by 52%, the fix
+     typed by 66% and passed, then everything clears by 95%. The widths below
+     are the still frame — the typo on show, flagged. */
+  .reading {
+    --reading-loop: 8s;
+  }
+
+  .reading-typo {
+    width: 5ch;
+  }
+
+  .reading-fixed {
+    width: 0;
+  }
+
+  .reading-typo,
+  .reading-fixed,
+  .reading-caret,
+  .reading-focus,
+  .reading-error,
+  .reading-hint,
+  .reading-note,
+  .reading-check {
+    animation-duration: var(--reading-loop);
+    animation-timing-function: cubic-bezier(0.22, 0.61, 0.36, 1);
+    animation-iteration-count: infinite;
+  }
+
+  .reading-typo {
+    animation-name: reading-typo;
+  }
+
+  .reading-fixed {
+    animation-name: reading-fixed;
+  }
+
+  .reading-caret {
+    animation-name: reading-caret;
+  }
+
+  .reading-focus {
+    animation-name: reading-focus;
+  }
+
+  .reading-error {
+    animation-name: reading-error;
+  }
+
+  .reading-hint {
+    animation-name: reading-hint;
+  }
+
+  .reading-note {
+    animation-name: reading-note;
+  }
+
+  .reading-check {
+    animation-name: reading-check;
+  }
+
   /* Email tooltip. Hover or keyboard focus shows it; touch screens can't
      hover, so there it sits under the address as a plain caption. */
   .tooltip-host {
@@ -622,6 +683,165 @@
   }
 }
 
+/* Both readings are 5 characters and the fix keeps the first 2 ("1,"), so
+   the typo types in 5 steps and backspaces 3, and the fix types its last 3.
+   steps(1, end) is an instant swap. */
+@keyframes reading-typo {
+  0%,
+  6% {
+    width: 0;
+    opacity: 1;
+    animation-timing-function: steps(5, end);
+  }
+  20% {
+    width: 5ch;
+  }
+  46% {
+    width: 5ch;
+    animation-timing-function: steps(3, end);
+  }
+  52% {
+    width: 2ch;
+    opacity: 1;
+    animation-timing-function: steps(1, end);
+  }
+  52.5%,
+  100% {
+    width: 0;
+    opacity: 0;
+  }
+}
+
+@keyframes reading-fixed {
+  0%,
+  52% {
+    width: 0;
+    opacity: 1;
+    animation-timing-function: steps(1, end);
+  }
+  52.5%,
+  55% {
+    width: 2ch;
+    opacity: 1;
+    animation-timing-function: steps(3, end);
+  }
+  66%,
+  90% {
+    width: 5ch;
+    opacity: 1;
+  }
+  95% {
+    width: 5ch;
+    opacity: 0;
+  }
+  100% {
+    width: 0;
+    opacity: 0;
+  }
+}
+
+@keyframes reading-caret {
+  0%,
+  3% {
+    opacity: 0;
+  }
+  4%,
+  90% {
+    opacity: 1;
+  }
+  93%,
+  100% {
+    opacity: 0;
+  }
+}
+
+/* Focused, in the site's own focus colour, except while flagged. */
+@keyframes reading-focus {
+  0%,
+  3% {
+    opacity: 0;
+  }
+  4%,
+  21% {
+    opacity: 1;
+  }
+  23%,
+  64% {
+    opacity: 0;
+  }
+  66%,
+  88% {
+    opacity: 1;
+  }
+  92%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes reading-error {
+  0%,
+  21% {
+    opacity: 0;
+  }
+  23%,
+  64% {
+    opacity: 1;
+  }
+  66%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes reading-hint {
+  0%,
+  21% {
+    opacity: 1;
+  }
+  23%,
+  64% {
+    opacity: 0;
+  }
+  66%,
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes reading-note {
+  0%,
+  21% {
+    opacity: 0;
+  }
+  23%,
+  64% {
+    opacity: 1;
+  }
+  66%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes reading-check {
+  0%,
+  66% {
+    opacity: 0;
+    transform: scale(0.6);
+  }
+  70%,
+  90% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  94%,
+  100% {
+    opacity: 0;
+    transform: scale(1);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -650,8 +870,8 @@
     animation: none !important;
   }
 
-  /* Project previews hold still on their first frame, which each sketch's
-     own classes already draw. */
+  /* Project previews hold still on the frame each sketch's own classes
+     draw: the kanban at rest, the reading field flagged. */
   .preview * {
     animation: none !important;
   }
