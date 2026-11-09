@@ -5,6 +5,7 @@ import Reveal from '@/components/ui/Reveal';
 import RichText from '@/components/ui/RichText';
 import StackList from '@/components/ui/StackList';
 import ArchiveViewer from '@/components/ui/ArchiveViewer';
+import ProjectPreview from '@/components/visual/previews/ProjectPreview';
 import { projects, type Project } from '@/data/projects';
 import { useUiStore } from '@/store/useUiStore';
 
@@ -189,6 +190,10 @@ const Work = () => {
                         </div>
 
                         <ProjectTail project={project} />
+
+                        {project.preview ? (
+                          <ProjectPreview preview={project.preview} />
+                        ) : null}
                       </div>
                     </div>
                   </div>
@@ -226,6 +231,10 @@ const Work = () => {
                 </div>
 
                 <ProjectTail project={activeProject} />
+
+                {activeProject.preview ? (
+                  <ProjectPreview preview={activeProject.preview} />
+                ) : null}
               </div>
             </div>
           </Reveal>

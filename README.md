@@ -23,6 +23,7 @@ files import React, so you can edit them without touching a component.
 | The CTA wording                       | `CTA_REST` / `CTA_HOVER` in `src/components/sections/Contact.tsx` |
 | A job, its bullets, or its tech stack | `src/data/experience.ts`    |
 | A project, its blurb, or its link     | `src/data/projects.ts`      |
+| A project's animated preview          | `preview` in `src/data/projects.ts` (caption); the drawing in `src/components/visual/previews/` |
 | Skills and how they're grouped        | `src/data/toolkit.ts`       |
 | Section order and nav labels          | `src/data/sections.ts`      |
 | Colours (both themes), fonts, spacing | `src/index.css` + `tailwind.config.js` |
@@ -51,7 +52,8 @@ src/
 │   ├── layout/    StatusBar, Section wrapper, SiteFooter
 │   ├── ui/        Reveal, SectionHeading, StackList, RichText, GitHubBadge, LinkedInBadge, ThemeToggle, ArchiveViewer
 │   ├── sections/  One file per section of the page
-│   └── visual/    RouteMap — the animated map behind the intro
+│   └── visual/    RouteMap — the animated map behind the intro;
+│                  previews/ — ProjectPreview and one sketch per project
 ├── App.tsx        Section order + the four page-level hooks
 └── index.css      Design tokens, animations, tooltip, reduced-motion rules
 ```

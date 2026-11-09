@@ -24,6 +24,12 @@ These are deliberate. Breaking one should be a decision, not an accident.
 - **Typographic, not pictorial.** Until the FYLP archive below, the site had
   **zero images** — no `public/`, no `src/assets/`, no image references in any
   component. Work is an index of rows, not a grid of cards.
+  **Project previews are a deliberate exception, by Kervi's request:** a small
+  looping sketch per project of its main feature (`Project.preview`,
+  `src/components/visual/previews/`). They stay in the site's own vocabulary —
+  hairlines, 2px corners, mono labels, accent for what moves, bars standing in
+  for text — never a screenshot, a device frame or the `live` ochre, which is
+  reserved for "live now".
 - **Hairline rules and mono captions** carry the structure. Border radius stays
   at 1–2px. `font-data` (Spline Sans Mono) is the caption/label face.
 - **Both themes always.** Dark is the default and applies with no `data-theme`

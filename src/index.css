@@ -107,6 +107,60 @@
     animation: archive-shot-in 320ms cubic-bezier(0.22, 0.61, 0.36, 1) both;
   }
 
+  /* Project previews. A shut accordion row keeps its preview mounted, so
+     hold the loop where it is until somebody opens the row. */
+  .disclosure[data-open='false'] .preview * {
+    animation-play-state: paused;
+  }
+
+  /* QA hub kanban (KanbanSketch.tsx). Every part runs on the same loop, so
+     the percentages below line up across rules. Without the animation — under
+     reduced motion — the classes in the component leave the card resting in
+     its first column with nothing else showing. */
+  .kanban {
+    --kanban-loop: 8s;
+  }
+
+  .kanban-card,
+  .kanban-ring,
+  .kanban-cursor,
+  .kanban-progress,
+  .kanban-check,
+  .kanban-slot-testing,
+  .kanban-slot-passed {
+    animation-duration: var(--kanban-loop);
+    animation-timing-function: cubic-bezier(0.22, 0.61, 0.36, 1);
+    animation-iteration-count: infinite;
+  }
+
+  .kanban-card {
+    animation-name: kanban-card;
+  }
+
+  .kanban-ring {
+    animation-name: kanban-ring;
+  }
+
+  .kanban-cursor {
+    animation-name: kanban-cursor;
+  }
+
+  .kanban-progress {
+    animation-name: kanban-progress;
+  }
+
+  .kanban-check {
+    animation-name: kanban-check;
+  }
+
+  .kanban-slot-testing {
+    animation-name: kanban-slot-testing;
+  }
+
+  .kanban-slot-passed {
+    animation-name: kanban-slot-passed;
+  }
+
   /* Email tooltip. Hover or keyboard focus shows it; touch screens can't
      hover, so there it sits under the address as a plain caption. */
   .tooltip-host {
@@ -294,6 +348,170 @@
   }
 }
 
+/* One column over is the card's own width plus twice the column padding
+   (p-1.5) and one gap (gap-2): 100% + 1.25rem. Every frame writes all three
+   functions so the browser tweens them as a list, not as a matrix. */
+@keyframes kanban-card {
+  0%,
+  14% {
+    transform: translateX(0) rotate(0) scale(1);
+    opacity: 1;
+  }
+  19% {
+    transform: translateX(0) rotate(-2deg) scale(1.04);
+  }
+  33% {
+    transform: translateX(calc(100% + 1.25rem)) rotate(-2deg) scale(1.04);
+  }
+  37%,
+  54% {
+    transform: translateX(calc(100% + 1.25rem)) rotate(0) scale(1);
+  }
+  58% {
+    transform: translateX(calc(100% + 1.25rem)) rotate(-2deg) scale(1.04);
+  }
+  72% {
+    transform: translateX(calc(200% + 2.5rem)) rotate(-2deg) scale(1.04);
+  }
+  76%,
+  92% {
+    transform: translateX(calc(200% + 2.5rem)) rotate(0) scale(1);
+    opacity: 1;
+  }
+  96% {
+    transform: translateX(calc(200% + 2.5rem)) rotate(0) scale(1);
+    opacity: 0;
+  }
+  97% {
+    transform: translateX(0) rotate(0) scale(1);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0) rotate(0) scale(1);
+    opacity: 1;
+  }
+}
+
+/* Accent outline while the card is held. */
+@keyframes kanban-ring {
+  0%,
+  15% {
+    opacity: 0;
+  }
+  19%,
+  35% {
+    opacity: 1;
+  }
+  39%,
+  55% {
+    opacity: 0;
+  }
+  58%,
+  74% {
+    opacity: 1;
+  }
+  78%,
+  100% {
+    opacity: 0;
+  }
+}
+
+/* The pointer arrives, rides with the card, and leaves after each drop. */
+@keyframes kanban-cursor {
+  0%,
+  9% {
+    opacity: 0;
+    transform: translate(0.75rem, 0.75rem);
+  }
+  14%,
+  37% {
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+  41%,
+  49% {
+    opacity: 0;
+    transform: translate(0.75rem, 0.75rem);
+  }
+  54%,
+  74% {
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+  78%,
+  100% {
+    opacity: 0;
+    transform: translate(0.75rem, 0.75rem);
+  }
+}
+
+/* The test running while the card sits in Testing. */
+@keyframes kanban-progress {
+  0%,
+  39% {
+    transform: scaleX(0);
+    opacity: 1;
+  }
+  52% {
+    transform: scaleX(1);
+    opacity: 1;
+  }
+  56%,
+  100% {
+    transform: scaleX(1);
+    opacity: 0;
+  }
+}
+
+@keyframes kanban-check {
+  0%,
+  75% {
+    opacity: 0;
+    transform: scale(0.6);
+  }
+  79%,
+  92% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  95%,
+  100% {
+    opacity: 0;
+    transform: scale(1);
+  }
+}
+
+/* Drop targets light up as the card comes over them. */
+@keyframes kanban-slot-testing {
+  0%,
+  24% {
+    opacity: 0;
+  }
+  28%,
+  34% {
+    opacity: 1;
+  }
+  37%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes kanban-slot-passed {
+  0%,
+  60% {
+    opacity: 0;
+  }
+  64%,
+  71% {
+    opacity: 1;
+  }
+  74%,
+  100% {
+    opacity: 0;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -319,6 +537,12 @@
   /* No rising letters or auto-cycling; hover still swaps, just instantly. */
   .cta-char,
   .cta-line {
+    animation: none !important;
+  }
+
+  /* Project previews hold still on their first frame, which each sketch's
+     own classes already draw. */
+  .preview * {
     animation: none !important;
   }
 }

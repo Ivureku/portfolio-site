@@ -1,3 +1,9 @@
+/**
+ * The animated sketches a project preview can draw. Each one is a component
+ * in src/components/visual/previews/, registered in ProjectPreview.tsx.
+ */
+export type PreviewSketch = 'kanban';
+
 export type Project = {
   id: string;
   name: string;
@@ -21,6 +27,12 @@ export type Project = {
      */
     shots: { src: string; alt: string; caption: string }[];
   };
+  /**
+   * A small looping sketch of the project's main feature, shown under the
+   * detail. The drawing is decorative, so `caption` says in words what it
+   * shows — one sentence, read like the archive's screenshot captions.
+   */
+  preview?: { sketch: PreviewSketch; caption: string };
   /** One project starts open. Make it the one you most want read. */
   featured?: boolean;
 };
