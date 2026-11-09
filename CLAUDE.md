@@ -165,6 +165,24 @@ profile persists the theme toggle between runs, which is easy to misread as a
 bug. **Look at the screenshots.** Both overlay bugs above passed every
 programmatic assertion and were only visible by eye.
 
+## Cloud workspace (Claude Code on the web)
+
+There are two workspaces: the Windows machine at home, and Claude Code cloud
+sessions (Linux). Cloud sessions should run on the personal `portfolio-site`
+environment. Its setup script installs Node 24 (the container ships 22),
+runs `npm ci`, and sets this repo's commit author to the noreply address
+above. Each container is thrown away afterwards, so anything not pushed is lost.
+
+- **Verify UI with Playwright there, not Edge.** Chromium and Playwright come
+  preinstalled in the container (`require('playwright')` works from any
+  directory), so the CDP recipe above is home-only. The rules don't change:
+  wait on `document.fonts.ready`, check both themes, look at the screenshots.
+- **`tsconfig.tsbuildinfo` flips between the two machines.** Windows records
+  source paths lowercased (`./src/app.tsx`), Linux keeps their case
+  (`./src/App.tsx`), so a build on either one dirties the file against a
+  commit made on the other. Revert it before committing, until it's untracked.
+- The Git Bash path-rewriting gotcha below is Windows-only.
+
 ## Gotchas that have already bitten once
 
 - **`tsc -b` short-circuits.** If `tsconfig.tsbuildinfo` looks current, build
