@@ -188,9 +188,10 @@
   }
 
   /* ERP systems reading field (ReadingSketch.tsx). One loop: the typo is
-     typed by 20%, flagged at 23%, backspaced to its prefix by 52%, the fix
-     typed by 66% and passed, then everything clears by 95%. The widths below
-     are the still frame — the typo on show, flagged. */
+     typed by 20%, flagged from 21–23%, backspaced to its prefix by 52%, the
+     fix typed by 66% and passed from 66–68% — never before its last digit —
+     then everything clears by 95%. The widths below are the still frame —
+     the typo on show, flagged. */
   .reading {
     --reading-loop: 8s;
   }
@@ -208,7 +209,6 @@
   .reading-caret,
   .reading-focus,
   .reading-error,
-  .reading-hint,
   .reading-note,
   .reading-check {
     animation-duration: var(--reading-loop);
@@ -234,10 +234,6 @@
 
   .reading-error {
     animation-name: reading-error;
-  }
-
-  .reading-hint {
-    animation-name: reading-hint;
   }
 
   .reading-note {
@@ -766,10 +762,10 @@
     opacity: 1;
   }
   23%,
-  64% {
+  66% {
     opacity: 0;
   }
-  66%,
+  68%,
   88% {
     opacity: 1;
   }
@@ -779,33 +775,19 @@
   }
 }
 
+/* The flag holds until the fix's last digit lands at 66%. */
 @keyframes reading-error {
   0%,
   21% {
     opacity: 0;
   }
   23%,
-  64% {
+  66% {
     opacity: 1;
   }
-  66%,
+  68%,
   100% {
     opacity: 0;
-  }
-}
-
-@keyframes reading-hint {
-  0%,
-  21% {
-    opacity: 1;
-  }
-  23%,
-  64% {
-    opacity: 0;
-  }
-  66%,
-  100% {
-    opacity: 1;
   }
 }
 
@@ -815,10 +797,10 @@
     opacity: 0;
   }
   23%,
-  64% {
+  66% {
     opacity: 1;
   }
-  66%,
+  68%,
   100% {
     opacity: 0;
   }
@@ -826,11 +808,11 @@
 
 @keyframes reading-check {
   0%,
-  66% {
+  68% {
     opacity: 0;
     transform: scale(0.6);
   }
-  70%,
+  72%,
   90% {
     opacity: 1;
     transform: scale(1);

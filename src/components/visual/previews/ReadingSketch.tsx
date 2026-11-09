@@ -48,13 +48,11 @@ const ReadingSketch = () => (
         </svg>
       </div>
 
-      <div className="relative mt-1.5 font-data text-xs">
-        <p className="reading-hint text-ink-muted opacity-0">
-          Previous: {PREVIOUS}
-        </p>
-        <p className="reading-note absolute inset-0 text-ink">
-          Lower than last reading ({PREVIOUS})
-        </p>
+      {/* The hint stays put; the warning takes a line of its own under it,
+          reserved even while hidden, so nothing swaps or shifts. */}
+      <div className="mt-1.5 font-data text-xs">
+        <p className="text-ink-muted">Last reading: {PREVIOUS}</p>
+        <p className="reading-note mt-0.5 text-ink">Lower than last reading</p>
       </div>
     </div>
   </div>
