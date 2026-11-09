@@ -899,13 +899,14 @@
   }
 }
 
+/* Gone the moment the first digit lands at 12% (steps(3, end) from 8%). */
 @keyframes search-placeholder {
   0%,
-  7% {
+  11% {
     opacity: 1;
     animation-timing-function: steps(1, end);
   }
-  8% {
+  12% {
     opacity: 0;
   }
   71% {
@@ -934,17 +935,19 @@
   }
 }
 
-/* The second count covers the first while the search applies. */
+/* The second count covers the first while only the matches show: from the
+   moment the search applies until the returning rows are mostly in, at
+   about 82% of their 80–86% fade. */
 @keyframes search-count {
   0%,
   22% {
     opacity: 0;
   }
   23%,
-  72% {
+  82% {
     opacity: 1;
   }
-  73%,
+  83%,
   100% {
     opacity: 0;
   }
