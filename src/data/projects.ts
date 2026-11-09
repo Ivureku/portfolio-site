@@ -2,7 +2,7 @@
  * The animated sketches a project preview can draw. Each one is a component
  * in src/components/visual/previews/, registered in ProjectPreview.tsx.
  */
-export type PreviewSketch = 'kanban' | 'reading' | 'search';
+export type PreviewSketch = 'dispatch' | 'kanban' | 'reading' | 'search';
 
 export type Project = {
   id: string;
@@ -91,6 +91,11 @@ export const projects: Project[] = [
     detail:
       'A dispatcher can only make good decisions if they know where the responding vehicle actually is. I built the web interface and the live map layer, so vehicle position, route, and status read at a glance instead of arriving as a list of coordinates.',
     stack: ['React', 'React Leaflet', 'JavaScript'],
+    preview: {
+      sketch: 'dispatch',
+      caption:
+        "A responding vehicle followed along its route on the live map until it's on scene.",
+    },
   },
   {
     id: 'fylp-2024',

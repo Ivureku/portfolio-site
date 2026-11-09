@@ -298,6 +298,42 @@
     animation-name: search-shift;
   }
 
+  /* Emergency tracking dispatch map (DispatchSketch.tsx). One loop: the unit
+     sets off at 8%, takes the route's four legs, arrives at 62% and is on
+     scene until it fades at 90–94%, back at the start by 100%. Its position
+     comes from --x0…--y4 on the sketch; the position below is the still
+     frame — partway along, en route. */
+  .dispatch {
+    --dispatch-loop: 8s;
+  }
+
+  .dispatch-unit {
+    left: var(--x2);
+    top: var(--y2);
+  }
+
+  .dispatch-unit,
+  .dispatch-arrived,
+  .dispatch-en-route,
+  .dispatch-on-scene {
+    animation-duration: var(--dispatch-loop);
+    animation-timing-function: cubic-bezier(0.22, 0.61, 0.36, 1);
+    animation-iteration-count: infinite;
+  }
+
+  .dispatch-unit {
+    animation-name: dispatch-unit;
+  }
+
+  .dispatch-arrived,
+  .dispatch-on-scene {
+    animation-name: dispatch-on-scene;
+  }
+
+  .dispatch-en-route {
+    animation-name: dispatch-en-route;
+  }
+
   /* Email tooltip. Hover or keyboard focus shows it; touch screens can't
      hover, so there it sits under the address as a plain caption. */
   .tooltip-host {
@@ -1001,6 +1037,87 @@
   }
 }
 
+/* Each leg eases into its corner, the way a vehicle slows for a turn. The
+   jump back to the start happens while the unit is invisible. */
+@keyframes dispatch-unit {
+  0%,
+  8% {
+    left: var(--x0);
+    top: var(--y0);
+    opacity: 1;
+  }
+  18% {
+    left: var(--x1);
+    top: var(--y1);
+  }
+  40% {
+    left: var(--x2);
+    top: var(--y2);
+  }
+  50% {
+    left: var(--x3);
+    top: var(--y3);
+  }
+  62%,
+  90% {
+    left: var(--x4);
+    top: var(--y4);
+    opacity: 1;
+  }
+  94% {
+    left: var(--x4);
+    top: var(--y4);
+    opacity: 0;
+    animation-timing-function: steps(1, end);
+  }
+  95% {
+    left: var(--x0);
+    top: var(--y0);
+    opacity: 0;
+  }
+  100% {
+    left: var(--x0);
+    top: var(--y0);
+    opacity: 1;
+  }
+}
+
+/* The status swaps the moment the unit arrives and back as it leaves the
+   pin, with no crossfade, so the two words never overlap. */
+@keyframes dispatch-en-route {
+  0%,
+  61% {
+    opacity: 1;
+    animation-timing-function: steps(1, end);
+  }
+  62%,
+  93% {
+    opacity: 0;
+    animation-timing-function: steps(1, end);
+  }
+  94%,
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes dispatch-on-scene {
+  0%,
+  61% {
+    opacity: 0;
+    animation-timing-function: steps(1, end);
+  }
+  62%,
+  93% {
+    opacity: 1;
+    animation-timing-function: steps(1, end);
+  }
+  94%,
+  100% {
+    opacity: 0;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -1031,7 +1148,7 @@
 
   /* Project previews hold still on the frame each sketch's own classes
      draw: the kanban at rest, the reading field flagged, the search
-     applied. */
+     applied, the unit en route. */
   .preview * {
     animation: none !important;
   }
