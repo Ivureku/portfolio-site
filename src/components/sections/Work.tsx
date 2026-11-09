@@ -22,8 +22,9 @@ const HOVER_INTENT_MS = 140;
 const isDesktop = () => window.matchMedia(DESKTOP_QUERY).matches;
 
 /**
- * What closes a project panel: an archive where the site has gone, a link
- * where it's still up, nothing where there was never anything to visit.
+ * Where a project can be visited: an archive where the site has gone, a link
+ * where it's still up, nothing where there was never anything to visit. Only
+ * a preview, where the project has one, comes after it.
  */
 const ProjectTail = ({ project }: { project: Project }) => {
   if (project.archive) {
@@ -192,7 +193,9 @@ const Work = () => {
                         <ProjectTail project={project} />
 
                         {project.preview ? (
-                          <ProjectPreview preview={project.preview} />
+                          <div className="mt-5">
+                            <ProjectPreview preview={project.preview} />
+                          </div>
                         ) : null}
                       </div>
                     </div>
@@ -233,7 +236,9 @@ const Work = () => {
                 <ProjectTail project={activeProject} />
 
                 {activeProject.preview ? (
-                  <ProjectPreview preview={activeProject.preview} />
+                  <div className="mt-6">
+                    <ProjectPreview preview={activeProject.preview} />
+                  </div>
                 ) : null}
               </div>
             </div>

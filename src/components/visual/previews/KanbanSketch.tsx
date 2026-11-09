@@ -3,8 +3,10 @@
  *
  * The moving card rides in its own layer over the board, laid out on the
  * same grid, so the columns can clip their own cards without clipping it.
- * Every column holds the same number of resting cards above the slot a new
- * card drops into, so the card only ever travels sideways.
+ * The card only ever travels sideways, which holds because every column has
+ * the same number of resting cards above the slot a new card drops into, and
+ * every column label stays on one line (whitespace-nowrap) whatever the
+ * width or text size.
  *
  * The kanban-* keyframes in index.css drive it on one shared loop, and they
  * move the card one column at a time by its own width plus the column
@@ -62,7 +64,9 @@ const Slot = ({ outline }: { outline?: string }) => (
 );
 
 const ColumnLabel = ({ label }: { label: string }) => (
-  <p className="px-0.5 font-data text-xs text-ink-muted">{label}</p>
+  <p className="whitespace-nowrap px-0.5 font-data text-xs text-ink-muted">
+    {label}
+  </p>
 );
 
 const SLOT_OUTLINES = [undefined, 'kanban-slot-testing', 'kanban-slot-passed'];
@@ -100,6 +104,7 @@ const KanbanSketch = () => (
           <span className="kanban-progress absolute inset-x-1.5 bottom-0.5 h-px origin-left scale-x-0 bg-accent" />
           <span className="kanban-ring absolute -inset-px rounded-sm border border-accent opacity-0" />
           <svg
+            aria-hidden="true"
             viewBox="0 0 12 12"
             fill="none"
             stroke="currentColor"
@@ -111,6 +116,7 @@ const KanbanSketch = () => (
             <path d="M2 6.5 4.5 9 10 3" />
           </svg>
           <svg
+            aria-hidden="true"
             viewBox="0 0 12 16"
             strokeWidth="1"
             strokeLinejoin="round"

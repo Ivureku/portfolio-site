@@ -111,7 +111,12 @@ Reduced motion is handled in one place: the `@media (prefers-reduced-motion:
 reduce)` block at the bottom of `index.css` neutralises every transition, and
 `RouteMap` reads `prefersReducedMotion` from the store to skip the moving marker
 entirely. The contact CTA drops its rise-in and auto-cycling too; hover still
-swaps the phrase, just without the roll.
+swaps the phrase, just without the roll. Project previews hold still on their
+first frame.
+
+Project previews loop on CSS keyframes in `index.css`, one set per sketch. A
+preview inside a closed accordion row stays mounted but paused, so phones
+aren't animating rows nobody has opened.
 
 To slow everything down or speed it up, change the two `700ms` durations in the
 `[data-reveal]` rule.

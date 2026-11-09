@@ -18,16 +18,21 @@ type ProjectPreviewProps = {
  *
  * All the motion lives in index.css: the loop itself, the pause while an
  * accordion row is shut, and the still frame under reduced motion.
+ *
+ * The caller sets the margin above it, as with StackList.
  */
 const ProjectPreview = ({ preview }: ProjectPreviewProps) => {
   const Sketch = SKETCHES[preview.sketch];
 
   return (
-    <figure className="preview mt-6">
-      {/* Wider on desktop so the sticky panel still fits a 768px-tall laptop. */}
+    <figure className="preview">
+      {/* A height in rem, not a ratio of the width: the sketches are sized in
+          rem, so frame and drawing grow together when a visitor enlarges
+          their text, and a wide tablet row doesn't open up empty board.
+          Every sketch is drawn to fit it. */}
       <div
         aria-hidden="true"
-        className="relative aspect-video overflow-hidden rounded-sm border border-rule bg-paper lg:aspect-[5/2]"
+        className="relative h-44 overflow-hidden rounded-sm border border-rule bg-paper"
       >
         <Sketch />
       </div>

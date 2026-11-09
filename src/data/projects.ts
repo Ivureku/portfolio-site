@@ -28,9 +28,10 @@ export type Project = {
     shots: { src: string; alt: string; caption: string }[];
   };
   /**
-   * A small looping sketch of the project's main feature, shown under the
-   * detail. The drawing is decorative, so `caption` says in words what it
-   * shows — one sentence, read like the archive's screenshot captions.
+   * A small looping sketch of the project's main feature, shown last in the
+   * project's panel, after the link or archive. The drawing is hidden from
+   * screen readers, so `caption` is its only description: one sentence that
+   * says what happens in it, the way an image's alt text would.
    */
   preview?: { sketch: PreviewSketch; caption: string };
   /** One project starts open. Make it the one you most want read. */
