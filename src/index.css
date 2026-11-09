@@ -113,10 +113,11 @@
     animation-play-state: paused;
   }
 
-  /* QA hub kanban (KanbanSketch.tsx). Every part runs on the same loop, so
-     the percentages below line up across rules. Without the animation — under
-     reduced motion — the classes in the component leave the card resting in
-     its first column with nothing else showing. */
+  /* QA Hub kanban (KanbanSketch.tsx). Every part runs on the same loop, so
+     the percentages below line up across rules: #12 is dropped in Fixed at
+     37% and in Done at 76%, fades out at 92–96% and is back by 100%. Without
+     the animation — under reduced motion — the classes in the component leave
+     the card resting in its first column with nothing else showing. */
   .kanban {
     --kanban-loop: 8s;
   }
@@ -126,8 +127,13 @@
   .kanban-cursor,
   .kanban-progress,
   .kanban-check,
-  .kanban-slot-testing,
-  .kanban-slot-passed {
+  .kanban-slot-fixed,
+  .kanban-slot-done,
+  .kanban-label-fixed,
+  .kanban-label-done,
+  .kanban-count-start,
+  .kanban-count-fixed,
+  .kanban-count-done {
     animation-duration: var(--kanban-loop);
     animation-timing-function: cubic-bezier(0.22, 0.61, 0.36, 1);
     animation-iteration-count: infinite;
@@ -153,12 +159,32 @@
     animation-name: kanban-check;
   }
 
-  .kanban-slot-testing {
-    animation-name: kanban-slot-testing;
+  .kanban-slot-fixed {
+    animation-name: kanban-slot-fixed;
   }
 
-  .kanban-slot-passed {
-    animation-name: kanban-slot-passed;
+  .kanban-slot-done {
+    animation-name: kanban-slot-done;
+  }
+
+  .kanban-label-fixed {
+    animation-name: kanban-label-fixed;
+  }
+
+  .kanban-label-done {
+    animation-name: kanban-label-done;
+  }
+
+  .kanban-count-start {
+    animation-name: kanban-count-start;
+  }
+
+  .kanban-count-fixed {
+    animation-name: kanban-count-fixed;
+  }
+
+  .kanban-count-done {
+    animation-name: kanban-count-done;
   }
 
   /* Email tooltip. Hover or keyboard focus shows it; touch screens can't
@@ -445,7 +471,7 @@
   }
 }
 
-/* The test running while the card sits in Testing. */
+/* QA verifying the fix while the card sits in Fixed. */
 @keyframes kanban-progress {
   0%,
   39% {
@@ -482,7 +508,7 @@
 }
 
 /* Drop targets light up as the card comes over them. */
-@keyframes kanban-slot-testing {
+@keyframes kanban-slot-fixed {
   0%,
   24% {
     opacity: 0;
@@ -497,7 +523,7 @@
   }
 }
 
-@keyframes kanban-slot-passed {
+@keyframes kanban-slot-done {
   0%,
   60% {
     opacity: 0;
@@ -507,6 +533,90 @@
     opacity: 1;
   }
   74%,
+  100% {
+    opacity: 0;
+  }
+}
+
+/* The status label of the column the card is headed for, until it lands. */
+@keyframes kanban-label-fixed {
+  0%,
+  24% {
+    color: rgb(var(--color-ink-muted));
+    border-color: rgb(var(--color-rule));
+  }
+  28%,
+  38% {
+    color: rgb(var(--color-accent));
+    border-color: rgb(var(--color-accent));
+  }
+  42%,
+  100% {
+    color: rgb(var(--color-ink-muted));
+    border-color: rgb(var(--color-rule));
+  }
+}
+
+@keyframes kanban-label-done {
+  0%,
+  60% {
+    color: rgb(var(--color-ink-muted));
+    border-color: rgb(var(--color-rule));
+  }
+  64%,
+  77% {
+    color: rgb(var(--color-accent));
+    border-color: rgb(var(--color-accent));
+  }
+  81%,
+  100% {
+    color: rgb(var(--color-ink-muted));
+    border-color: rgb(var(--color-rule));
+  }
+}
+
+/* Each count's second value covers the first while it applies: a column's
+   count changes when #12 is dropped into it or out of it. */
+@keyframes kanban-count-start {
+  0%,
+  36% {
+    opacity: 0;
+  }
+  37%,
+  97% {
+    opacity: 1;
+  }
+  98%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes kanban-count-fixed {
+  0%,
+  36% {
+    opacity: 0;
+  }
+  37%,
+  75% {
+    opacity: 1;
+  }
+  76%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes kanban-count-done {
+  0%,
+  75% {
+    opacity: 0;
+  }
+  76%,
+  95% {
+    opacity: 1;
+  }
+  96%,
   100% {
     opacity: 0;
   }

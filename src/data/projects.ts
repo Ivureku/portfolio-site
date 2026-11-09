@@ -40,15 +40,29 @@ export type Project = {
 
 export const projects: Project[] = [
   {
+    id: 'qa-hub',
+    name: 'QA Hub',
+    context: 'Davao City Water District',
+    year: '2026',
+    detail:
+      'An in-house ticketing system that gives the developers and QA testers on the current ERP projects one shared place for every ticket. I designed the kanban board at its centre, where a ticket moves from To do through In progress and Fixed to Done, with Needs info for anything waiting on an answer.',
+    stack: ['Next.js', 'Supabase', 'Prisma'],
+    preview: {
+      sketch: 'kanban',
+      caption:
+        'Ticket #12 moving from In progress to Fixed, then verified and closed in Done.',
+    },
+    featured: true,
+  },
+  {
     id: 'erp-suite',
     name: 'ERP systems',
     context: 'Davao City Water District',
-    // year: '2025 – present',
-    year: '2025 – 2026',
+    year: '2025 – present',
+    // year: '2025 – 2026',
     detail:
       'Several internal systems that staff spend their whole working day inside. My job is the front end: shared component patterns, server state through React Query, client state through Zustand, and forms that hold up against real operational data.',
     stack: ['React', 'TypeScript', 'React Query', 'Zustand', '.NET'],
-    featured: true,
   },
   {
     id: 'hr-erp',
