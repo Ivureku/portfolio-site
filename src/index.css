@@ -312,8 +312,14 @@
     top: var(--y2);
   }
 
+  .dispatch-pin {
+    left: var(--x4);
+    top: var(--y4);
+  }
+
   .dispatch-unit,
   .dispatch-arrived,
+  .dispatch-assigned,
   .dispatch-en-route,
   .dispatch-on-scene {
     animation-duration: var(--dispatch-loop);
@@ -328,6 +334,10 @@
   .dispatch-arrived,
   .dispatch-on-scene {
     animation-name: dispatch-on-scene;
+  }
+
+  .dispatch-assigned {
+    animation-name: dispatch-assigned;
   }
 
   .dispatch-en-route {
@@ -1082,15 +1092,16 @@
   }
 }
 
-/* The status swaps the moment the unit arrives and back as it leaves the
-   pin, with no crossfade, so the two words never overlap. */
-@keyframes dispatch-en-route {
+/* Statuses swap with no crossfade, so two words never overlap: Assigned
+   from the fade-out at 94% until the unit sets off at 8%, En route until it
+   arrives at 62%, then On scene. */
+@keyframes dispatch-assigned {
   0%,
-  61% {
+  7% {
     opacity: 1;
     animation-timing-function: steps(1, end);
   }
-  62%,
+  8%,
   93% {
     opacity: 0;
     animation-timing-function: steps(1, end);
@@ -1098,6 +1109,23 @@
   94%,
   100% {
     opacity: 1;
+  }
+}
+
+@keyframes dispatch-en-route {
+  0%,
+  7% {
+    opacity: 0;
+    animation-timing-function: steps(1, end);
+  }
+  8%,
+  61% {
+    opacity: 1;
+    animation-timing-function: steps(1, end);
+  }
+  62%,
+  100% {
+    opacity: 0;
   }
 }
 

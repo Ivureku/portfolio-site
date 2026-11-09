@@ -8,7 +8,7 @@ import type { CSSProperties } from 'react';
  * SVG's 100×100 viewBox is stretched to the frame (preserveAspectRatio none,
  * with strokes that don't stretch), and the unit and the pin are positioned
  * in the same percentages. ROUTE is the one source: it draws the line, and
- * it reaches the dispatch-unit keyframes in index.css as --x0…--y4.
+ * it reaches index.css as --x0…--y4, for the unit's keyframes and the pin.
  *
  * The unit is accent, not the intro map's ochre: ochre stays reserved for
  * "live now". Under reduced motion the classes here draw the unit partway
@@ -31,8 +31,6 @@ const routeProperties = Object.fromEntries(
     [`--y${index}`, `${y}%`],
   ])
 ) as CSSProperties;
-
-const [destinationX, destinationY] = ROUTE[ROUTE.length - 1];
 
 const DispatchSketch = () => (
   <div className="dispatch absolute inset-0" style={routeProperties}>
@@ -67,32 +65,34 @@ const DispatchSketch = () => (
       </g>
       <polyline
         points={ROUTE.map(([x, y]) => `${x},${y}`).join(' ')}
-        className="stroke-accent"
+        className="stroke-accent/40"
         strokeWidth="2"
-        strokeOpacity="0.45"
         strokeLinejoin="round"
         vectorEffect="non-scaling-stroke"
       />
     </svg>
 
-    {/* Destination: a ring that fills once the unit arrives. */}
-    <span
-      className="absolute grid h-3 w-3 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full border border-accent bg-paper"
-      style={{ left: `${destinationX}%`, top: `${destinationY}%` }}
-    >
-      <span className="dispatch-arrived h-1.5 w-1.5 rounded-full bg-accent opacity-0" />
-    </span>
-
     <span className="dispatch-unit absolute h-2.5 w-2.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-accent">
       <span className="absolute -inset-1 rounded-full border border-accent/40" />
     </span>
 
-    {/* Status, where a dispatcher would read it. Both are eight characters
-        in the mono face, so the box never changes width. */}
+    {/* Destination, drawn over the unit: on arrival the unit slips under the
+        ring and the ring fills, so the arrival itself is what you see. */}
+    <span className="dispatch-pin absolute grid h-3 w-3 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full border border-accent bg-paper">
+      <span className="dispatch-arrived h-1.5 w-1.5 rounded-full bg-accent opacity-0" />
+    </span>
+
+    {/* Status, where a dispatcher would read it: Assigned while the unit
+        waits at the start, En route once it sets off, On scene on arrival.
+        All three are eight characters in the mono face, so the box never
+        changes width. */}
     <span className="absolute bottom-3 right-3 flex items-center gap-1.5 whitespace-nowrap rounded-sm border border-rule bg-paper px-1.5 py-0.5 font-data text-xs">
       <span className="text-ink">Unit 7</span>
       <span className="text-ink-muted">·</span>
       <span className="grid">
+        <span className="dispatch-assigned col-start-1 row-start-1 text-ink-muted opacity-0">
+          Assigned
+        </span>
         <span className="dispatch-en-route col-start-1 row-start-1 text-ink-muted">
           En route
         </span>
