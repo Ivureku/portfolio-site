@@ -185,6 +185,72 @@ above. Each container is thrown away afterwards, so anything not pushed is lost.
   wait on `document.fonts.ready`, check both themes, look at the screenshots.
 - The Git Bash path-rewriting gotcha below is Windows-only.
 
+## Project previews — in progress
+
+Work happens on `claude/gallant-heisenberg-3h767m`, which is not merged into
+`main` yet. Each project in Selected work gets a small looping sketch of its
+main feature, shown last in its panel (see the design-constraint exception
+near the top).
+
+**How Kervi wants it done:** one project at a time. Brief him first, in plain
+words and kept simple: one action, one result, made-up data, no real names.
+Build only after his go. Have an agent that didn't write it check it, fix
+what it finds, send him a GIF of the loop, then brief the next project.
+
+| Project | Sketch | State |
+|---|---|---|
+| QA Hub | `kanban`: ticket #12 In progress → Fixed → Done, after his real board | done, checked |
+| ERP systems | `reading`: a meter reading lower than the last one flagged, then fixed | done, checked |
+| HR ERP system | `search`: "014" narrows four employee rows to two | done, checked |
+| Emergency tracking | `dispatch`: Unit 7 follows its route to the pin; Assigned → En route → On scene | done; final re-check of its last fixes may still be open |
+| FYLP 2024 | — | next: brief him first |
+| Palaro 2024 | — | not started |
+| Concept paper approval | — | not started |
+
+**Adding one:**
+1. Add a name to `PreviewSketch` and `preview: { sketch, caption }` to the
+   project in `src/data/projects.ts`.
+2. Write a component in `src/components/visual/previews/` and register it in
+   `ProjectPreview.tsx`.
+3. Put the motion in `index.css` as `<name>-*` rules plus keyframes on one
+   8s loop.
+4. Its base classes are the still frame shown under reduced motion: pick the
+   frame that shows the feature.
+
+The frame is a fixed `h-44` (rem, so it grows with text size). Each sketch
+has to fit it from 300px wide, including at a 20px root font.
+
+**Check every one for:**
+- **Timing:** sample the loop with `document.getAnimations()`, using
+  `pause()` and then setting `currentTime`. Every label, count and flag must
+  match what the drawing shows at that moment. Five bugs came from this kind
+  of mismatch, such as a count changing before its rows did.
+- **Sizes:** 300, 320 at a 20px root, 390, 768, 1024×768 and 1280. The
+  desktop panel must stay at or under 656px at 1024×768.
+- Both themes, and reduced motion.
+- **Selecting a row:** open a project other than the featured one by keyboard
+  (focus, then Enter). With a mouse, hover intent swaps the panel to whatever
+  row the pointer ends up over.
+
+**Don't:**
+- **Hide an animated element with `display:none`.** It restarts that
+  element's animation on its own; collapse it with visibility and width
+  instead.
+- **Let an invisible spacer copy carry `sm:visible`.**
+- **Count wrapped lines from element boxes.** Count text-node rects instead.
+
+**Waiting on Kervi:**
+- **His local edits to `projects.ts`** on the home machine: review them and
+  merge them into this branch.
+- **The intro and Path wording.** Should the intro's "Most recently" become
+  "Currently", and the Path role become "October 2025 – present", now that
+  ERP systems is ongoing? He has the alternatives commented out already.
+- **The tracking preview's look.** It looks a lot like the intro map: a grid,
+  a green route, a moving dot.
+- **No pause control.** The previews loop with nothing to stop them except the
+  OS reduced-motion setting (WCAG 2.2.2). RouteMap is the same.
+- **Merging into `main`** once he's happy.
+
 ## Gotchas that have already bitten once
 
 - **`tsc -b` short-circuits.** If `tsconfig.tsbuildinfo` looks current, build
