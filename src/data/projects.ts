@@ -2,7 +2,7 @@
  * The animated sketches a project preview can draw. Each one is a component
  * in src/components/visual/previews/, registered in ProjectPreview.tsx.
  */
-export type PreviewSketch = 'kanban' | 'reading';
+export type PreviewSketch = 'kanban' | 'reading' | 'search';
 
 export type Project = {
   id: string;
@@ -77,6 +77,11 @@ export const projects: Project[] = [
     detail:
       'Pages and components for the module handling employee records and HR workflows, built on Ant Design with MobX for local state. My first time working inside an established enterprise codebase rather than starting one.',
     stack: ['React', 'TypeScript', 'Ant Design', 'MobX', 'React Query'],
+    preview: {
+      sketch: 'search',
+      caption:
+        'Typing in the search narrows the employee records to the ones that match.',
+    },
   },
   {
     id: 'emergency-tracking',
