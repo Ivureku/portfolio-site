@@ -82,14 +82,16 @@ const Header = ({
   /** The spacer copy in the moving layer: same size, nothing animated. */
   still?: boolean;
 }) => (
-  <div className="flex min-w-0 items-center gap-1.5">
+  <div className="flex min-w-0 items-center">
     <span
       className={`${still ? '' : (column.labelClass ?? '')} min-w-0 truncate rounded-sm border border-rule px-1 font-data text-xs text-ink-muted`}
     >
       {column.label}
     </span>
-    {/* No room for the count beside "In progress" on a phone. */}
-    <span className="relative hidden shrink-0 font-data text-xs text-ink-muted sm:inline-block">
+    {/* No room for the count beside "In progress" on a phone. Collapsed
+        rather than display:none, which would stop its animation and restart
+        it out of step with the card when a phone turns to landscape. */}
+    <span className="invisible relative inline-block w-0 shrink-0 overflow-hidden font-data text-xs text-ink-muted sm:visible sm:ml-1.5 sm:w-auto sm:overflow-visible">
       {column.counts[0]}
       {still ? null : (
         <span
@@ -125,7 +127,7 @@ const Slot = ({ outline }: { outline?: string }) => (
     <span className="invisible font-data text-xs">#{MOVING.id}</span>
     {outline ? (
       <span
-        className={`${outline} absolute inset-0 rounded-sm border border-dashed border-accent opacity-0`}
+        className={`${outline} absolute -inset-px rounded-sm border border-dashed border-accent opacity-0`}
       />
     ) : null}
   </div>
@@ -167,7 +169,7 @@ const KanbanSketch = () => (
             strokeWidth="1.6"
             strokeLinecap="round"
             strokeLinejoin="round"
-            className="kanban-check h-2.5 w-2.5 shrink-0 text-accent opacity-0"
+            className="kanban-check absolute inset-y-0 right-1.5 my-auto h-2.5 w-2.5 text-accent opacity-0"
           >
             <path d="M2 6.5 4.5 9 10 3" />
           </svg>
