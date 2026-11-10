@@ -204,7 +204,7 @@ what it finds, send him a GIF of the loop, then brief the next project.
 | HR ERP system | `search`: "014" narrows four employee rows to two | done, checked |
 | Emergency tracking | `dispatch`: Unit 7 follows its route to the pin; Assigned → En route → On scene | done, checked |
 | FYLP 2024 | `variants`: a Register button switched Solid → Soft → Outline, as in Storybook | done, checked |
-| Palaro 2024 | `schedule`: a "Now" band steps down a day of four events | built; independent check in progress |
+| Palaro 2024 | `schedule`: a "Now" band steps down a day of four events | done, checked |
 | Concept paper approval | — | briefed: a paper signed off Adviser → Dean → Student Affairs until "Approved" (A, recommended) or a status lookup (B); waiting on his pick |
 
 **Adding one:**
@@ -218,7 +218,9 @@ what it finds, send him a GIF of the loop, then brief the next project.
    frame that shows the feature.
 
 The frame is a fixed `h-44` (rem, so it grows with text size). Each sketch
-has to fit it from 300px wide, including at a 20px root font.
+has to fit it from 300px wide at the default text size, and from 320px (the
+WCAG reflow width) at a 20px root font. Below that, a long label may
+truncate with an ellipsis, but nothing may overflow.
 
 **Check every one for:**
 - **Timing:** sample the loop with `document.getAnimations()`, using
