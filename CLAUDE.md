@@ -203,8 +203,8 @@ what it finds, send him a GIF of the loop, then brief the next project.
 | ERP systems | `reading`: a meter reading lower than the last one flagged, then fixed | done, checked |
 | HR ERP system | `search`: "014" narrows four employee rows to two | done, checked |
 | Emergency tracking | `dispatch`: Unit 7 follows its route to the pin; Assigned → En route → On scene | done, checked |
-| FYLP 2024 | — | next: brief him first |
-| Palaro 2024 | — | not started |
+| FYLP 2024 | `variants`: a Register button switched Solid → Soft → Outline, as in Storybook | done, checked |
+| Palaro 2024 | — | briefed: a day's schedule with a "Now" marker stepping down it (A, recommended) or a day switcher (B); waiting on his pick |
 | Concept paper approval | — | not started |
 
 **Adding one:**
@@ -249,6 +249,10 @@ has to fit it from 300px wide, including at a 20px root font.
   a green route, a moving dot.
 - **No pause control.** The previews loop with nothing to stop them except the
   OS reduced-motion setting (WCAG 2.2.2). RouteMap is the same.
+- **Large text on a short screen.** At a 20px root on 1024×768, every panel
+  with a preview is taller than the 628px under the sticky top (712–852px),
+  so the bottom of the preview needs a scroll. At the default size all fit;
+  FYLP is the tightest, at 633 of 656px. The recommendation was to leave it.
 - **Merging into `main`** once he's happy.
 
 ## Gotchas that have already bitten once
