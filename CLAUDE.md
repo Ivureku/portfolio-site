@@ -187,8 +187,8 @@ above. Each container is thrown away afterwards, so anything not pushed is lost.
 
 ## Project previews
 
-Work happens on `claude/gallant-heisenberg-3h767m`, which is not merged into
-`main` yet. Each project in Selected work has a small looping sketch of its
+Built on `claude/gallant-heisenberg-3h767m` and merged into `main` on
+2026-11-10. Each project in Selected work has a small looping sketch of its
 main feature, shown last in its panel (see the design-constraint exception
 near the top). All seven are built and independently checked; what's left
 is in "Waiting on Kervi" below.
@@ -249,8 +249,9 @@ truncate with an ellipsis, but nothing may overflow.
 - **Count wrapped lines from element boxes.** Count text-node rects instead.
 
 **Waiting on Kervi:**
-- **His local edits to `projects.ts`** on the home machine: review them and
-  merge them into this branch.
+- **His local edits to `projects.ts`** on the home machine, not yet pushed:
+  he'll bring them onto `main` himself. Review them against the `preview`
+  fields when they land.
 - **The intro and Path wording.** Should the intro's "Most recently" become
   "Currently", and the Path role become "October 2025 – present", now that
   ERP systems is ongoing? He has the alternatives commented out already.
@@ -262,7 +263,6 @@ truncate with an ellipsis, but nothing may overflow.
   with a preview is taller than the 628px under the sticky top (712–852px),
   so the bottom of the preview needs a scroll. At the default size all fit;
   FYLP is the tightest, at 633 of 656px. The recommendation was to leave it.
-- **Merging into `main`** once he's happy.
 
 ## Gotchas that have already bitten once
 
