@@ -346,7 +346,7 @@
 
   /* FYLP variants (VariantsSketch.tsx). One loop: Solid until 30%, Soft
      picked over 30–34%, Outline over 63–67%, Solid again over 94–98%. The
-     button finishes restyling as the highlight lands. */
+     button switches as the highlight lands. */
   .variants {
     --variants-loop: 8s;
   }
@@ -1190,25 +1190,30 @@
 }
 
 /* Solid, Soft, Outline: the same button in three treatments, all from the
-   theme's tokens. */
+   theme's tokens. It switches in one step as the highlight lands, the way
+   Storybook re-renders a story when a control changes. A tween would pass
+   the label through its own fill's colour on the way. */
 @keyframes variants-button {
   0%,
-  31% {
+  33.5% {
     background-color: rgb(var(--color-accent));
     border-color: rgb(var(--color-accent));
     color: rgb(var(--color-paper));
+    animation-timing-function: steps(1, end);
   }
   34%,
-  64% {
+  66.5% {
     background-color: rgb(var(--color-accent) / 0.12);
     border-color: rgb(var(--color-accent) / 0);
     color: rgb(var(--color-accent));
+    animation-timing-function: steps(1, end);
   }
   67%,
-  95% {
+  97.5% {
     background-color: rgb(var(--color-accent) / 0);
     border-color: rgb(var(--color-ink-muted));
     color: rgb(var(--color-ink));
+    animation-timing-function: steps(1, end);
   }
   98%,
   100% {
