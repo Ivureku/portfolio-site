@@ -4,10 +4,13 @@
  * takes a check in turn, the line fills toward the next, and once the last
  * has signed the status turns from Pending to Approved.
  *
- * The offices share the width equally, so the line runs between the first
- * and last circle centres — a sixth of the width in from each side, set in
- * index.css — and fills by half for each office signed. The approval-*
- * keyframes drive it. Under reduced motion the classes here show two of the
+ * The offices share the width equally, with no gap between columns, so the
+ * line runs between the first and last circle centres — a sixth of the
+ * width in from each side, set in index.css — and fills by half for each
+ * office signed. The office count is written three times: grid-cols-3
+ * here, the sixth in .approval-track, and the half steps and three sign
+ * keyframes in index.css. Change them together. The approval-* keyframes
+ * drive it. Under reduced motion the classes here show two of the
  * three offices signed, still pending: the paper partway through.
  */
 const OFFICES = [
@@ -24,7 +27,7 @@ const ApprovalSketch = () => (
     <div className="flex items-start justify-between gap-3">
       <div className="min-w-0 flex-1">
         <p className="text-ink-muted">Concept paper</p>
-        <span className="mt-1.5 block h-1.5 w-2/3 bg-ink/25" />
+        <span className="mt-1.5 block h-1 w-2/3 max-w-xs bg-ink/25" />
       </div>
       <span className="grid shrink-0">
         <span className={`approval-pending ${TAG} border-rule text-ink-muted`}>

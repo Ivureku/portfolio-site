@@ -388,7 +388,8 @@
   }
 
   /* From the first circle's centre to the last's: the offices share the
-     width in thirds, so each centre is a sixth in from its side. */
+     width in thirds with no column gap, so each centre is a sixth in from
+     its side. A gap or a fourth office breaks this silently. */
   .approval-track {
     left: calc(100% / 6);
     right: calc(100% / 6);

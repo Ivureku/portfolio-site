@@ -185,12 +185,13 @@ above. Each container is thrown away afterwards, so anything not pushed is lost.
   wait on `document.fonts.ready`, check both themes, look at the screenshots.
 - The Git Bash path-rewriting gotcha below is Windows-only.
 
-## Project previews — in progress
+## Project previews
 
 Work happens on `claude/gallant-heisenberg-3h767m`, which is not merged into
-`main` yet. Each project in Selected work gets a small looping sketch of its
+`main` yet. Each project in Selected work has a small looping sketch of its
 main feature, shown last in its panel (see the design-constraint exception
-near the top).
+near the top). All seven are built and independently checked; what's left
+is in "Waiting on Kervi" below.
 
 **How Kervi wants it done:** one project at a time. Brief him first, in plain
 words and kept simple: one action, one result, made-up data, no real names.
@@ -205,7 +206,7 @@ what it finds, send him a GIF of the loop, then brief the next project.
 | Emergency tracking | `dispatch`: Unit 7 follows its route to the pin; Assigned → En route → On scene | done, checked |
 | FYLP 2024 | `variants`: a Register button switched Solid → Soft → Outline, as in Storybook | done, checked |
 | Palaro 2024 | `schedule`: a "Now" band steps down a day of four events | done, checked |
-| Concept paper approval | — | briefed: a paper signed off Adviser → Dean → Student Affairs until "Approved" (A, recommended) or a status lookup (B); waiting on his pick |
+| Concept paper approval | `approval`: Adviser → Dean → Student Affairs sign in turn, then Pending → Approved | done, checked |
 
 **Adding one:**
 1. Add a name to `PreviewSketch` and `preview: { sketch, caption }` to the
@@ -233,6 +234,12 @@ truncate with an ellipsis, but nothing may overflow.
 - **Selecting a row:** open a project other than the featured one by keyboard
   (focus, then Enter). With a mouse, hover intent swaps the panel to whatever
   row the pointer ends up over.
+
+**Known and left as is** (cosmetic, inside the hidden drawings):
+- In the kanban, #12's check sits over the end of its title bar at 320px
+  and narrower, or with large text.
+- In the Palaro schedule, the muted times under the "Now" band are 4.00:1 in
+  the light theme.
 
 **Don't:**
 - **Hide an animated element with `display:none`.** It restarts that
