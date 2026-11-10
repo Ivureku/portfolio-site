@@ -378,6 +378,57 @@
       cubic-bezier(0.22, 0.61, 0.36, 1) infinite;
   }
 
+  /* Concept paper approval (ApprovalSketch.tsx). One loop: the Adviser
+     signs at 10–13%, the line fills to the Dean over 14–28%, who signs at
+     28–31%; it fills to Student Affairs over 32–46%, who signs at 46–49%,
+     and the paper reads Approved from 52%. Everything fades at 90–94%, and
+     the next paper reads Pending from 96%. */
+  .approval {
+    --approval-loop: 8s;
+  }
+
+  /* From the first circle's centre to the last's: the offices share the
+     width in thirds, so each centre is a sixth in from its side. */
+  .approval-track {
+    left: calc(100% / 6);
+    right: calc(100% / 6);
+  }
+
+  .approval-sign-1,
+  .approval-sign-2,
+  .approval-sign-3,
+  .approval-line,
+  .approval-pending,
+  .approval-approved {
+    animation-duration: var(--approval-loop);
+    animation-timing-function: cubic-bezier(0.22, 0.61, 0.36, 1);
+    animation-iteration-count: infinite;
+  }
+
+  .approval-sign-1 {
+    animation-name: approval-sign-1;
+  }
+
+  .approval-sign-2 {
+    animation-name: approval-sign-2;
+  }
+
+  .approval-sign-3 {
+    animation-name: approval-sign-3;
+  }
+
+  .approval-line {
+    animation-name: approval-line;
+  }
+
+  .approval-pending {
+    animation-name: approval-pending;
+  }
+
+  .approval-approved {
+    animation-name: approval-approved;
+  }
+
   /* Email tooltip. Hover or keyboard focus shows it; touch screens can't
      hover, so there it sits under the address as a plain caption. */
   .tooltip-host {
@@ -1271,6 +1322,126 @@
   }
 }
 
+/* Each office's check pops in as it signs, and all clear together for the
+   next paper. */
+@keyframes approval-sign-1 {
+  0%,
+  10% {
+    opacity: 0;
+    transform: scale(0.6);
+  }
+  13%,
+  90% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  94%,
+  100% {
+    opacity: 0;
+    transform: scale(1);
+  }
+}
+
+@keyframes approval-sign-2 {
+  0%,
+  28% {
+    opacity: 0;
+    transform: scale(0.6);
+  }
+  31%,
+  90% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  94%,
+  100% {
+    opacity: 0;
+    transform: scale(1);
+  }
+}
+
+@keyframes approval-sign-3 {
+  0%,
+  46% {
+    opacity: 0;
+    transform: scale(0.6);
+  }
+  49%,
+  90% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  94%,
+  100% {
+    opacity: 0;
+    transform: scale(1);
+  }
+}
+
+/* Half the line per office: it reaches each circle as that office signs.
+   The reset to empty happens while it's invisible. */
+@keyframes approval-line {
+  0%,
+  14% {
+    transform: scaleX(0);
+    opacity: 1;
+  }
+  28%,
+  32% {
+    transform: scaleX(0.5);
+  }
+  46%,
+  90% {
+    transform: scaleX(1);
+    opacity: 1;
+  }
+  94% {
+    transform: scaleX(1);
+    opacity: 0;
+    animation-timing-function: steps(1, end);
+  }
+  95%,
+  100% {
+    transform: scaleX(0);
+    opacity: 1;
+  }
+}
+
+/* The status swaps in one step once the last office has signed. At the end
+   Approved fades out with the checks, and Pending comes back only after,
+   so the two tags never overlap and the tag never outlasts the checks. */
+@keyframes approval-pending {
+  0%,
+  51.5% {
+    opacity: 1;
+    animation-timing-function: steps(1, end);
+  }
+  52%,
+  94% {
+    opacity: 0;
+  }
+  96%,
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes approval-approved {
+  0%,
+  51.5% {
+    opacity: 0;
+    animation-timing-function: steps(1, end);
+  }
+  52%,
+  90% {
+    opacity: 1;
+  }
+  94%,
+  100% {
+    opacity: 0;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -1302,7 +1473,7 @@
   /* Project previews hold still on the frame each sketch's own classes
      draw: the kanban at rest, the reading field flagged, the search
      applied, the unit en route, the first variant picked, the second
-     event on now. */
+     event on now, the paper two signatures in. */
   .preview * {
     animation: none !important;
   }

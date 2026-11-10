@@ -1,5 +1,6 @@
 import type { ComponentType } from 'react';
 import type { PreviewSketch, Project } from '@/data/projects';
+import ApprovalSketch from './ApprovalSketch';
 import DispatchSketch from './DispatchSketch';
 import KanbanSketch from './KanbanSketch';
 import ReadingSketch from './ReadingSketch';
@@ -9,6 +10,7 @@ import VariantsSketch from './VariantsSketch';
 
 /** Every sketch a project can name in its `preview`. */
 const SKETCHES: Record<PreviewSketch, ComponentType> = {
+  approval: ApprovalSketch,
   dispatch: DispatchSketch,
   kanban: KanbanSketch,
   reading: ReadingSketch,

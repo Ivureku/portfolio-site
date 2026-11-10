@@ -3,7 +3,13 @@
  * in src/components/visual/previews/, registered in ProjectPreview.tsx.
  */
 export type PreviewSketch =
-  'dispatch' | 'kanban' | 'reading' | 'schedule' | 'search' | 'variants';
+  | 'approval'
+  | 'dispatch'
+  | 'kanban'
+  | 'reading'
+  | 'schedule'
+  | 'search'
+  | 'variants';
 
 export type Project = {
   id: string;
@@ -158,5 +164,10 @@ export const projects: Project[] = [
     detail:
       'A web app that moves student event proposals, bookings, and concept papers through the offices that have to sign them. It replaced a paper trail with something people could check the status of.',
     stack: ['Next.js', 'React', 'Tailwind CSS', 'shadcn/ui'],
+    preview: {
+      sketch: 'approval',
+      caption:
+        "A concept paper signed off office by office until it's approved.",
+    },
   },
 ];
