@@ -8,7 +8,7 @@ const Toolkit = () => (
   <Section id="toolkit">
     <SectionHeading
       title="What I actually use"
-      lede="Grouped by honesty rather than by category — how often I reach for something says more than a logo wall."
+      lede="These are the tools I use in my day to day work. The ones I actuall reach for."
     />
 
     <div className="grid gap-x-16 gap-y-12 sm:grid-cols-2 xl:grid-cols-4">

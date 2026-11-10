@@ -63,12 +63,12 @@ export const projects: Project[] = [
   },
   {
     id: 'erp-suite',
-    name: 'ERP systems',
+    name: 'ERP (Billing and Collection)',
     context: 'Davao City Water District',
     year: '2025 – present',
     // year: '2025 – 2026',
     detail:
-      'Several internal systems that staff spend their whole working day inside. My job is the front end: shared component patterns, server state through React Query, client state through Zustand, and forms that hold up against real operational data.',
+      "Working on the modernization of the city's existing Billing and Collection System, a platform responsible for handling its billing operations. My primary focus is on building the front end, creating intuitive user experiences through clean, maintainable code and reusable component architecture. I also get involved in backend development, from creating API endpoints to implementing business logic.",
     stack: ['React', 'TypeScript', 'React Query', 'Zustand', '.NET'],
     preview: {
       sketch: 'reading',

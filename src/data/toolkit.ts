@@ -15,7 +15,6 @@ export const toolGroups: ToolGroup[] = [
       'React',
       'TypeScript',
       'Claude Code',
-      'Next.js',
       'Tailwind CSS',
       'React Query',
       'Zustand',
@@ -28,7 +27,8 @@ export const toolGroups: ToolGroup[] = [
     label: 'Have shipped with',
     note: 'Used in production, comfortable picking back up.',
     items: [
-      'MobX',
+      'Medusa.js',
+      'Next.js',
       'Ant Design',
       'shadcn/ui',
       'React Leaflet',
@@ -53,6 +53,7 @@ export const toolGroups: ToolGroup[] = [
       'Code review',
       'Component libraries',
       'Pairing with back-end devs',
+      'Having fun!',
     ],
   },
 ];
