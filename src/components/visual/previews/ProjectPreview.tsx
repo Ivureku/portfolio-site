@@ -3,6 +3,7 @@ import type { PreviewSketch, Project } from '@/data/projects';
 import DispatchSketch from './DispatchSketch';
 import KanbanSketch from './KanbanSketch';
 import ReadingSketch from './ReadingSketch';
+import ScheduleSketch from './ScheduleSketch';
 import SearchSketch from './SearchSketch';
 import VariantsSketch from './VariantsSketch';
 
@@ -11,6 +12,7 @@ const SKETCHES: Record<PreviewSketch, ComponentType> = {
   dispatch: DispatchSketch,
   kanban: KanbanSketch,
   reading: ReadingSketch,
+  schedule: ScheduleSketch,
   search: SearchSketch,
   variants: VariantsSketch,
 };

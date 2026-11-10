@@ -3,7 +3,7 @@
  * in src/components/visual/previews/, registered in ProjectPreview.tsx.
  */
 export type PreviewSketch =
-  'dispatch' | 'kanban' | 'reading' | 'search' | 'variants';
+  'dispatch' | 'kanban' | 'reading' | 'schedule' | 'search' | 'variants';
 
 export type Project = {
   id: string;
@@ -140,6 +140,11 @@ export const projects: Project[] = [
     detail:
       'Site for the university-wide sports festival, covering schedules and event information for a campus-sized audience during the one week it mattered most.',
     stack: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS'],
+    preview: {
+      sketch: 'schedule',
+      caption:
+        "The day's schedule, with what's on now highlighted as the day moves along.",
+    },
     link: {
       label: 'samahan.addu.edu.ph/palaro-2024',
       href: 'https://samahan.addu.edu.ph/palaro-2024/',

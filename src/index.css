@@ -366,6 +366,18 @@
     animation-name: variants-button;
   }
 
+  /* Palaro schedule (ScheduleSketch.tsx). One loop: Now on the first event
+     until 22%, then one event further over 22–26%, 47–51% and 72–76%; it
+     fades on the last at 92–95% and is back on the first by 100%. */
+  .schedule {
+    --schedule-loop: 8s;
+  }
+
+  .schedule-now {
+    animation: schedule-now var(--schedule-loop)
+      cubic-bezier(0.22, 0.61, 0.36, 1) infinite;
+  }
+
   /* Email tooltip. Hover or keyboard focus shows it; touch screens can't
      hover, so there it sits under the address as a plain caption. */
   .tooltip-host {
@@ -1223,6 +1235,42 @@
   }
 }
 
+/* Every row is the band's height, so each step is 100% of its own. The
+   jump back to the top happens while it's invisible. */
+@keyframes schedule-now {
+  0%,
+  22% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  26%,
+  47% {
+    transform: translateY(100%);
+  }
+  51%,
+  72% {
+    transform: translateY(200%);
+  }
+  76%,
+  92% {
+    transform: translateY(300%);
+    opacity: 1;
+  }
+  95% {
+    transform: translateY(300%);
+    opacity: 0;
+    animation-timing-function: steps(1, end);
+  }
+  95.5% {
+    transform: translateY(0);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -1253,7 +1301,8 @@
 
   /* Project previews hold still on the frame each sketch's own classes
      draw: the kanban at rest, the reading field flagged, the search
-     applied, the unit en route, the first variant picked. */
+     applied, the unit en route, the first variant picked, the second
+     event on now. */
   .preview * {
     animation: none !important;
   }
