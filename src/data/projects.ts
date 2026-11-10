@@ -2,7 +2,8 @@
  * The animated sketches a project preview can draw. Each one is a component
  * in src/components/visual/previews/, registered in ProjectPreview.tsx.
  */
-export type PreviewSketch = 'dispatch' | 'kanban' | 'reading' | 'search';
+export type PreviewSketch =
+  'dispatch' | 'kanban' | 'reading' | 'search' | 'variants';
 
 export type Project = {
   id: string;
@@ -105,6 +106,11 @@ export const projects: Project[] = [
     detail:
       'The public site for the First Year Leadership Program: registration, an application status checker, FAQs, and organisation pages. Built on a component library documented in Storybook so the rest of the team could reuse it.',
     stack: ['Next.js', 'React', 'Tailwind CSS', 'Storybook'],
+    preview: {
+      sketch: 'variants',
+      caption:
+        'One button from the shared component library, switched through its variants as in Storybook.',
+    },
     archive: {
       note: 'The domain lapsed after the programme ran, so fylp2024.com no longer resolves to the site. Archived here instead.',
       shots: [

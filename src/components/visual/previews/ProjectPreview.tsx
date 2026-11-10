@@ -4,6 +4,7 @@ import DispatchSketch from './DispatchSketch';
 import KanbanSketch from './KanbanSketch';
 import ReadingSketch from './ReadingSketch';
 import SearchSketch from './SearchSketch';
+import VariantsSketch from './VariantsSketch';
 
 /** Every sketch a project can name in its `preview`. */
 const SKETCHES: Record<PreviewSketch, ComponentType> = {
@@ -11,6 +12,7 @@ const SKETCHES: Record<PreviewSketch, ComponentType> = {
   kanban: KanbanSketch,
   reading: ReadingSketch,
   search: SearchSketch,
+  variants: VariantsSketch,
 };
 
 type ProjectPreviewProps = {

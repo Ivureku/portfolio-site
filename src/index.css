@@ -344,6 +344,28 @@
     animation-name: dispatch-en-route;
   }
 
+  /* FYLP variants (VariantsSketch.tsx). One loop: Solid until 30%, Soft
+     picked over 30–34%, Outline over 63–67%, Solid again over 94–98%. The
+     button finishes restyling as the highlight lands. */
+  .variants {
+    --variants-loop: 8s;
+  }
+
+  .variants-pick,
+  .variants-button {
+    animation-duration: var(--variants-loop);
+    animation-timing-function: cubic-bezier(0.22, 0.61, 0.36, 1);
+    animation-iteration-count: infinite;
+  }
+
+  .variants-pick {
+    animation-name: variants-pick;
+  }
+
+  .variants-button {
+    animation-name: variants-button;
+  }
+
   /* Email tooltip. Hover or keyboard focus shows it; touch screens can't
      hover, so there it sits under the address as a plain caption. */
   .tooltip-host {
@@ -1146,6 +1168,56 @@
   }
 }
 
+/* The three options share the control's width, so one option over is the
+   highlight's own width. */
+@keyframes variants-pick {
+  0%,
+  30% {
+    transform: translateX(0);
+  }
+  34%,
+  63% {
+    transform: translateX(100%);
+  }
+  67%,
+  94% {
+    transform: translateX(200%);
+  }
+  98%,
+  100% {
+    transform: translateX(0);
+  }
+}
+
+/* Solid, Soft, Outline: the same button in three treatments, all from the
+   theme's tokens. */
+@keyframes variants-button {
+  0%,
+  31% {
+    background-color: rgb(var(--color-accent));
+    border-color: rgb(var(--color-accent));
+    color: rgb(var(--color-paper));
+  }
+  34%,
+  64% {
+    background-color: rgb(var(--color-accent) / 0.12);
+    border-color: rgb(var(--color-accent) / 0);
+    color: rgb(var(--color-accent));
+  }
+  67%,
+  95% {
+    background-color: rgb(var(--color-accent) / 0);
+    border-color: rgb(var(--color-ink-muted));
+    color: rgb(var(--color-ink));
+  }
+  98%,
+  100% {
+    background-color: rgb(var(--color-accent));
+    border-color: rgb(var(--color-accent));
+    color: rgb(var(--color-paper));
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -1176,7 +1248,7 @@
 
   /* Project previews hold still on the frame each sketch's own classes
      draw: the kanban at rest, the reading field flagged, the search
-     applied, the unit en route. */
+     applied, the unit en route, the first variant picked. */
   .preview * {
     animation: none !important;
   }
